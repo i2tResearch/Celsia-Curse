@@ -53,18 +53,18 @@ cat /path/to/ssh_public_key.pub
 
     b. Ir a `SSH and GPG keys`
 
-        ![](./images/2025-09-21-12-53-58-image.png)
+![](./images/2025-09-21-12-53-58-image.png)
 
     c. Agregar una nueva llave ssh 
 
-        ![](./images/2025-09-21-12-54-30-image.png)
+![](./images/2025-09-21-12-54-30-image.png)
 
     d. con el comando `cat` de los pasos anteriores leemos nuestra llave publica 
 
-        ![](./images/2025-09-21-12-47-55-image.png)
+![](./images/2025-09-21-12-47-55-image.png)
 
     e. agregamos la llave publica en la plataforma 
 
-        ![](./images/2025-09-21-12-49-44-image.png)
+![](./images/2025-09-21-12-49-44-image.png)
 
 
