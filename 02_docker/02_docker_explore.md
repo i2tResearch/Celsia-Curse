@@ -82,7 +82,6 @@ make
 ls -l ./cmatrix
 
 ./cmatrix
-
 ```
 
 Despues de validar podemos crear nuestro dockerfile desde el historial de comandos 
@@ -125,5 +124,3 @@ docker buildx build --no-cache --platform linux/amd64 . -t njse22/cmatrix --push
 
 ## Nota para arm usar linux/arm64/v8
 ```
-
-
