@@ -1,7 +1,7 @@
 # Explore Docker Images
 
 ```shell
-docker run -it --rm wernight/funbox bash
+docker run -it --rm spurin/funbox bash
 ```
 
 # Ejemplo CMATRIX
