@@ -1,0 +1,11 @@
+# El formato es: nombre_usuario Atributo-de-chequeo := Valor
+steve   Cleartext-Password := "testing"
+        Service-Type = Framed-User,
+        Framed-Protocol = PPP,
+	# 172.0.0.0/8
+        # Framed-IP-Address = 192.168.1.10,
+        Framed-IP-Address = 172.0.0.0,
+        Framed-IP-Netmask = 255.0.0.0
+
+# Otro usuario más simple
+user1   Cleartext-Password := "password123"
