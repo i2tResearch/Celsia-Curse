@@ -43,7 +43,7 @@ docker images
 
 ```bash
 # docker run [opciones] nombre_del_contenedor nombre_de_la_imagen
-docker run -p <HOST_PORT:CONTAINER_PORT> <CONTAINER_NAME> --name <CONTAINER_NAME> <CONTAINER-IMAGE>
+docker run -p <HOST_PORT:CONTAINER_PORT> --name <CONTAINER_NAME> <CONTAINER-IMAGE>
 ```
 
 5. Listar Contenedores en ejecución 
