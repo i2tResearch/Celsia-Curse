@@ -3,14 +3,62 @@ services:
     build:
       context: ./freeradius
     container_name: freeradius-server
-
     ports:
-      - "1812:1812/udp" # Puerto de autenticación
-      - "1813:1813/udp" # Puerto de accounting
-
+      - "1812:1812/udp"
+      - "1813:1813/udp"
     volumes:
       - ./config/clients.conf:/etc/raddb/clients.conf
-      - ./config/mods-config/files/authorize:/etc/raddb/mods-config/files/authorize
-
-    command: freeradius -X
+    environment:
+      - POSTGRES_HOST=postgres-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=radius
+      - POSTGRES_PASSWORD=radiuspassword
+      - POSTGRES_DB=radius
+    depends_on:
+      postgres-db:
+        condition: service_healthy
     restart: unless-stopped
+    networks:
+      - radius-net
+
+  postgres-db:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=radius
+      - POSTGRES_PASSWORD=radiuspassword
+      - POSTGRES_DB=radius
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U radius -d radius"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - radius-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=adminpassword
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-db
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - radius-net
+
+volumes:
+  postgres-data:
+  pgadmin-data:
+
+networks:
+  radius-net:
